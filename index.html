@@ -9,6 +9,15 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --azul-escuro: #1a237e;
+        --cinza-escuro: #263238;
+        --cinza-medio: #37474f;
+        --azul-claro: #00b0ff;
+        --cinza-claro: #eceff1;
+        --branco: #ffffff;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -16,8 +25,8 @@
       body {
         margin: 0;
         font-family: "Roboto", sans-serif;
-        background-color: #0a0a0a;
-        color: #fff;
+        background-color: var(--cinza-escuro);
+        color: var(--branco);
         scroll-behavior: smooth;
       }
 
@@ -26,7 +35,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #f92f60;
+        background-color: var(--azul-escuro);
         position: sticky;
         top: 0;
         z-index: 10;
@@ -34,12 +43,13 @@
 
       .logo {
         font-size: 24px;
-        color: #ffffff;
+        color: var(--branco);
         font-weight: 900;
+        text-decoration: none;
       }
 
       nav a {
-        color: #ccc;
+        color: var(--cinza-claro);
         margin-left: 30px;
         text-decoration: none;
         font-weight: 500;
@@ -62,19 +72,19 @@
       }
 
       .hero-text h1 span {
-        color: #f92f60;
+        color: var(--azul-claro);
       }
 
       .hero-text p {
         font-size: 18px;
-        color: #aaa;
+        color: var(--cinza-claro);
         margin-bottom: 40px;
       }
 
       .cta-button {
         background-color: transparent;
-        border: 2px solid #f92f60;
-        color: #f92f60;
+        border: 2px solid var(--azul-claro);
+        color: var(--azul-claro);
         padding: 14px 28px;
         font-size: 16px;
         cursor: pointer;
@@ -82,8 +92,8 @@
       }
 
       .cta-button:hover {
-        background-color: #f92f60;
-        color: #0a0a0a;
+        background-color: var(--azul-claro);
+        color: var(--cinza-escuro);
       }
 
       .hero-img img {
@@ -108,7 +118,7 @@
       .highlight-bar {
         width: 100px;
         height: 6px;
-        background: linear-gradient(to right, #f92f60, #fff);
+        background: linear-gradient(to right, var(--azul-claro), var(--branco));
         margin-bottom: 20px;
       }
 
@@ -121,6 +131,7 @@
       .cases h2 {
         font-size: 36px;
         margin-bottom: 40px;
+        color: var(--branco);
       }
 
       .service-grid {
@@ -131,8 +142,8 @@
       }
 
       .service-box {
-        background: #111;
-        border: 1px solid #222;
+        background: var(--cinza-medio);
+        border: 1px solid var(--azul-claro);
         padding: 30px;
         width: 280px;
         border-radius: 12px;
@@ -142,30 +153,21 @@
 
       .service-box:hover {
         transform: scale(1.05);
-        border-color: #f92f60;
-        box-shadow: 0 0 12px #f92f60aa;
-      }
-
-      .service-box img {
-        width: 60px;
-        margin-bottom: 20px;
+        box-shadow: 0 0 12px var(--azul-claro);
       }
 
       .service-box h3 {
-        color: #f92f60;
+        color: var(--azul-claro);
         margin-bottom: 10px;
       }
 
-      .cases .case-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
-      }
-
       .case-card {
-        background: linear-gradient(135deg, #111, #1c1c1c);
-        border: 1px solid #222222;
+        background: linear-gradient(
+          135deg,
+          var(--cinza-medio),
+          var(--cinza-escuro)
+        );
+        border: 1px solid var(--azul-claro);
         width: 300px;
         padding: 20px;
         border-radius: 10px;
@@ -174,16 +176,20 @@
 
       .case-card:hover {
         transform: scale(1.04);
-        border-color: #f92f60;
+        box-shadow: 0 0 10px var(--azul-claro);
       }
 
       .case-card h4 {
         margin-top: 0;
-        color: #f92f60;
+        color: var(--azul-claro);
       }
 
       .final-cta {
-        background: radial-gradient(circle at center, #1a1a1a 30%, #0a0a0a);
+        background: radial-gradient(
+          circle at center,
+          var(--cinza-medio) 30%,
+          var(--cinza-escuro)
+        );
         text-align: center;
         padding: 80px 40px;
       }
@@ -197,7 +203,8 @@
         text-align: center;
         padding: 20px;
         font-size: 14px;
-        color: #777;
+        color: var(--cinza-claro);
+        background-color: var(--azul-escuro);
       }
 
       @media screen and (max-width: 768px) {
@@ -211,11 +218,104 @@
           margin-top: 30px;
         }
       }
+
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        transition: transform 0.2s ease;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+
+      .whatsapp-float img {
+        width: 32px;
+        height: 32px;
+      }
+
+      /* --- NOVO: Overlay inicial cobrindo toda a tela --- */
+      #introOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--cinza-escuro);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      /* Animação de saída do overlay (fade + scale) */
+      @keyframes overlayFadeOut {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.2);
+          pointer-events: none;
+        }
+      }
+
+      /* Esconder conteúdo principal inicialmente */
+      body > *:not(#introOverlay) {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      /* Quando pronto, conteúdo principal fica visível */
+      body.loaded > *:not(#introOverlay) {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
-    <header>
-      <a href="#" class="logo">AutoStrategic</a>
+    <!-- Overlay com a animação inicial -->
+    <div id="introOverlay">
+      <dotlottie-player
+        src="https://lottie.host/e7735826-48d5-4b35-87b0-41a079af12cd/zw694o8TsH.lottie"
+        background="transparent"
+        speed="1"
+        style="width: 300px; height: 300px"
+        loop
+        autoplay
+      ></dotlottie-player>
+    </div>
+
+    <header id="header">
+      <a
+        href="#"
+        class="logo"
+        style="display: inline-flex; align-items: center; gap: 8px"
+      >
+        <span>AutoStrategic</span>
+        <div class="logo-animation" id="logoAnimation">
+          <dotlottie-player
+            src="https://lottie.host/e7735826-48d5-4b35-87b0-41a079af12cd/zw694o8TsH.lottie"
+            background="transparent"
+            speed="1"
+            style="width: 50px; height: 50px"
+            loop
+            autoplay
+          ></dotlottie-player>
+        </div>
+      </a>
       <nav>
         <a href="#beneficios">Benefícios</a>
         <a href="#como-funciona">Como Funciona</a>
@@ -232,14 +332,12 @@
       <div class="hero-text">
         <div class="highlight-bar"></div>
         <h1>
-          Automatize seus processos.<br /><span
-            >Ganhe tempo, reduza custos.</span
-          >
+          Automatize seus processos<br /><span>Ganhe tempo, reduza custos</span>
         </h1>
         <p>
           Consultoria especializada em automação inteligente para eliminar
           tarefas manuais, reduzir erros e aumentar a produtividade – sem
-          complicações.
+          complicações
         </p>
         <button
           class="cta-button"
@@ -250,7 +348,7 @@
       </div>
       <div class="hero-img">
         <dotlottie-player
-          src="https://lottie.host/d608c353-52eb-40ae-bdbd-8aee116f12a5/gLaW4ARnPe.lottie"
+          src="https://lottie.host/e7735826-48d5-4b35-87b0-41a079af12cd/zw694o8TsH.lottie"
           background="transparent"
           speed="1"
           style="width: 520px; height: 520px"
@@ -261,27 +359,27 @@
     </section>
 
     <section id="beneficios" class="services">
-      <h2>Benefícios da Automação</h2>
+      <h2>Por que automatizar seus processos?</h2>
       <div class="service-grid">
         <div class="service-box">
           <h3>💸 Redução de Custos</h3>
-          <p>Redução imediata de custos operacionais.</p>
+          <p>Redução imediata de custos operacionais</p>
         </div>
         <div class="service-box">
           <h3>⏱️ Mais Tempo</h3>
-          <p>Mais tempo para focar no que realmente importa.</p>
+          <p>Mais foco no estratégico, menos esforço operacional</p>
         </div>
         <div class="service-box">
           <h3>✅ Eliminação de Erros</h3>
-          <p>Eliminação de retrabalho e erros manuais.</p>
+          <p>Eliminação de retrabalho e erros manuais</p>
         </div>
         <div class="service-box">
           <h3>🔗 Integrações</h3>
-          <p>Integração entre sistemas, planilhas, ERPs e APIs.</p>
+          <p>Integração entre sistemas, planilhas, ERPs e APIs</p>
         </div>
         <div class="service-box">
           <h3>🚀 Eficiência</h3>
-          <p>Aumento da eficiência com soluções sob medida.</p>
+          <p>Aumento da eficiência com soluções sob medida</p>
         </div>
       </div>
     </section>
@@ -293,36 +391,22 @@
           <h3>1. Diagnóstico gratuito</h3>
           <p>
             Entendemos seus processos e identificamos oportunidades reais de
-            automação.
+            automação
           </p>
         </div>
         <div class="service-box">
           <h3>2. Desenho da solução</h3>
-          <p>
-            Mapeamos os fluxos e propomos a melhor solução (RPA, API, script ou
-            híbrida).
-          </p>
+          <p>Mapeamos os processos e propomos a melhor solução</p>
         </div>
         <div class="service-box">
-          <h3>3. Automação personalizada</h3>
-          <p>
-            Desenvolvemos, testamos e implantamos a automação com rapidez e
-            segurança.
-          </p>
+          <h3>3. Desenvolvimento e implantação</h3>
+          <p>Implementamos e treinamos para uso eficiente</p>
         </div>
         <div class="service-box">
-          <h3>4. Entrega e suporte</h3>
-          <p>Documentamos tudo e oferecemos suporte contínuo ou recorrente.</p>
+          <h3>4. Suporte e otimização</h3>
+          <p>Monitoramos e otimizamos continuamente</p>
         </div>
       </div>
-    </section>
-
-    <section class="final-cta">
-      <h2>Vamos conversar sobre o que dá pra automatizar aí na sua empresa?</h2>
-      <p>
-        Nosso diagnóstico é gratuito, sem compromisso, e já te mostra onde você
-        pode ganhar tempo e economizar dinheiro.
-      </p>
     </section>
 
     <section id="contato" class="services">
@@ -331,18 +415,65 @@
         <a
           href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20um%20diagnóstico%20gratuito."
           target="_blank"
-          class="cta-button"
-          style="padding: 15px 25px; font-size: 16px; text-decoration: none"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+          "
+          onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 24px rgba(0, 0, 0, 0.3)'"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'"
         >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+            alt="WhatsApp"
+            width="24"
+            height="24"
+          />
           Falar com um consultor
         </a>
       </div>
     </section>
 
-    <footer>
-      <div class="logo">AutoStrategic</div>
-      &copy; © Copyright 2025 - AutoStrategic - Todos os direitos reservados.<br />
-      <small>CNPJ 00.000.000/0000-00</small><br />
-    </footer>
+    <footer>© 2025 AutoStrategic - Todos os direitos reservados</footer>
+
+    <a
+      href="https://api.whatsapp.com/send?phone=5511999999999"
+      target="_blank"
+      class="whatsapp-float"
+      aria-label="WhatsApp"
+    >
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        alt="WhatsApp"
+      />
+    </a>
+
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const overlay = document.getElementById("introOverlay");
+          overlay.style.animation = "overlayFadeOut 1s forwards";
+
+          overlay.addEventListener("animationend", () => {
+            overlay.remove();
+            document.body.classList.add("loaded");
+          });
+        }, 2000);
+      });
+    </script>
   </body>
 </html>
